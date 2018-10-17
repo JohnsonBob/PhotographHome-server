@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::any('/photograph/upload', 'PhotoGraphController@showUpload');

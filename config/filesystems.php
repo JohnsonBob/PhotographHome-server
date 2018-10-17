@@ -55,6 +55,17 @@ return [
             'visibility' => 'public',
         ],
 
+        'uploadssource' => [
+            'driver' => 'local',
+            'root' => public_path('uploads/source'),
+        ],
+
+
+        'uploadspretty' => [
+            'driver' => 'local',
+            'root' => public_path('uploads/pretty'),
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

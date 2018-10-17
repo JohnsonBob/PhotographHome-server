@@ -26,7 +26,6 @@ class PassportController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function login(){
-        return 'dsaf';
         if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){
             $user = Auth::user();
             $success['token'] =  $user->createToken('MyApp')->accessToken;
