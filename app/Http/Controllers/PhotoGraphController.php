@@ -8,7 +8,8 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Models\Project;
+use App\Models\SourcePhotos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -73,5 +74,23 @@ class PhotoGraphController extends Controller
     public function showUpload(Request $request){
         if($request->isMethod('POST')) $this->uploadSourcePhoto($request);
         return view('photograph.upload');
+    }
+
+    //分页获取源照片列表
+    public function getAllSourcePhoto(Request $request){
+        $pageSize=$request->get('pageSize');
+        $project_id=$request->get('project_id');
+        $created_time=$request->get('created_day');
+
+        if($pageSize){
+            $sourcePhotos = SourcePhotos::where(['project_id' => $project_id])
+                ->where('created_at', 'like' ,$created_time . '%')
+                ->orderBy('created_at', 'asc')
+                ->paginate($pageSize);
+        }
+
+//        $projectList = Project::where('votes', '>', 100)->paginate($pageSize);
+
+        return response()->json($sourcePhotos, $this->successStatus);
     }
 }
