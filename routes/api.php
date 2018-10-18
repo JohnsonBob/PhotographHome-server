@@ -25,4 +25,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('get-details', 'API\PassportController@getDetails');
     Route::post('info', 'API\PassportController@info');
     Route::post('/uploadSource', 'PhotoGraphController@uploadSourcePhoto');
+    Route::post('/createProject', 'ProjectController@createProject');
+    Route::post('/deleteProject', 'ProjectController@deleteProject');
+
 });

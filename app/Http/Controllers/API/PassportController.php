@@ -80,7 +80,6 @@ class PassportController extends Controller
 
     public function info()
     {
-
         return response()->json(['success' => 'dsaf'], $this->successStatus);
     }
 }
