@@ -26,13 +26,13 @@ class PassportController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function login(){
-        if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){
+        if(Auth::attempt(['mobile' => request('mobile'), 'password' => request('password')])){
             $user = Auth::user();
             $success['token'] =  $user->createToken('MyApp')->accessToken;
-            return response()->json(['success' => $success], $this->successStatus);
+            return response()->json(['code'=>true,'msg' => '登录成功','data'=> $success], $this->successStatus);
         }
         else{
-            return response()->json(['error'=>'Unauthorised'], 401);
+            return response()->json(['code'=>false,'msg' => '登录失败,账号或密码错误！'], 401);
         }
     }
 
@@ -45,13 +45,16 @@ class PassportController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'email' => 'required|email',
+            'mobile' => 'required|unique:users|numeric',
             'password' => 'required',
-            'c_password' => 'required|same:password',
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['error'=>$validator->errors()], 401);
+            if($validator->errors()->first('mobile') == 'The mobile has already been taken.'){
+                return response()->json(['code'=>false,'msg' => '该手机号已经注册'], 401);
+            }else{
+                return response()->json(['code'=>false, 'msg'=>$validator->errors()], 401);
+            }
         }
 
         $input = $request->all();
@@ -60,7 +63,7 @@ class PassportController extends Controller
         $success['token'] =  $user->createToken('MyApp')->accessToken;
         $success['name'] =  $user->name;
 
-        return response()->json(['success'=>$success], $this->successStatus);
+        return response()->json(['code'=>true,'msg' => '注册成功','data'=>$success], $this->successStatus);
     }
 
     /**
