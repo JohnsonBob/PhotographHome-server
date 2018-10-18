@@ -67,4 +67,19 @@ class ProjectController extends Controller
         }
         return response()->json(['code'=>false,'msg' => '删除项目失败,该项目不存在!'],401);
     }
+
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     * 获取项目列表
+     */
+    public function getProject(){
+        $userid = Auth::id();
+        $projectList = Project::where(['user_id' => $userid])->get();
+        if($projectList){
+            return response()->json(['code'=>true,'msg' => '获取项目成功!', 'data' => $projectList],200);
+        }
+        return response()->json(['code'=>true,'msg' => '获取项目失败!'],401);
+    }
+
+
 }

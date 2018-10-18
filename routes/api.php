@@ -27,5 +27,6 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('/uploadSource', 'PhotoGraphController@uploadSourcePhoto');
     Route::post('/createProject', 'ProjectController@createProject');
     Route::post('/deleteProject', 'ProjectController@deleteProject');
+    Route::post('/getProject', 'ProjectController@getProject');
 
 });
