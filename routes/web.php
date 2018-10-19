@@ -17,3 +17,5 @@ Route::get('/', function () {
 
 
 Route::any('/photograph/upload', 'PhotoGraphController@showUpload');
+Route::post('/getAllSprettyPhoto', 'PhotoGraphController@getAllSprettyPhoto');
+Route::post('/uploadSprettyPhoto', 'PhotoGraphController@uploadSprettyPhoto');

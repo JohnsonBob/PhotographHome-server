@@ -11,6 +11,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class SprettyPhotos
+ * @package App\Models
+ * 原图照片Models
+ */
 class SprettyPhotos extends Model
 {
     //表名
