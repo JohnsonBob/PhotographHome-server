@@ -11,11 +11,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * Class SourcePhotos
- * @package App\Models
- * 修图照片Models
- */
 class SourcePhotos extends Model
 {
     //表名
