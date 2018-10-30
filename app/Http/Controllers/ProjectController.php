@@ -46,7 +46,7 @@ class ProjectController extends Controller
                     'project_id'=>$project->id],200);
             }
         }
-        return response()->json(['code'=>false,'msg' => '项目创建失败'],401);
+        return response()->json(['code'=>false,'msg' => '项目创建失败'],200);
     }
 
     public function deleteProject(Request $request){
@@ -59,13 +59,13 @@ class ProjectController extends Controller
                 if($result){
                     return response()->json(['code'=>true,'msg' => '项目删除成功!'],200);
                 }else{
-                    return response()->json(['code'=>false,'msg' => '删除项目失败!'],401);
+                    return response()->json(['code'=>false,'msg' => '删除项目失败!'],200);
                 }
             }else{
-                return response()->json(['code'=>false,'msg' => '删除项目失败,不能删除其他人的项目!'],401);
+                return response()->json(['code'=>false,'msg' => '删除项目失败,不能删除其他人的项目!'],200);
             }
         }
-        return response()->json(['code'=>false,'msg' => '删除项目失败,该项目不存在!'],401);
+        return response()->json(['code'=>false,'msg' => '删除项目失败,该项目不存在!'],200);
     }
 
     /**
@@ -78,7 +78,7 @@ class ProjectController extends Controller
         if($projectList){
             return response()->json(['code'=>true,'msg' => '获取项目成功!', 'data' => $projectList],200);
         }
-        return response()->json(['code'=>true,'msg' => '获取项目失败!'],401);
+        return response()->json(['code'=>true,'msg' => '获取项目失败!'],200);
     }
 
 

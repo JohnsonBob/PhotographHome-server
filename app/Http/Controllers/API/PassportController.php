@@ -32,7 +32,7 @@ class PassportController extends Controller
             return response()->json(['code'=>true,'msg' => '登录成功','data'=> $success], $this->successStatus);
         }
         else{
-            return response()->json(['code'=>false,'msg' => '登录失败,账号或密码错误！'], 401);
+            return response()->json(['code'=>false,'msg' => '登录失败,账号或密码错误！'], 200);
         }
     }
 
@@ -51,9 +51,9 @@ class PassportController extends Controller
 
         if ($validator->fails()) {
             if($validator->errors()->first('mobile') == 'The mobile has already been taken.'){
-                return response()->json(['code'=>false,'msg' => '该手机号已经注册'], 401);
+                return response()->json(['code'=>false,'msg' => '该手机号已经注册'], 200);
             }else{
-                return response()->json(['code'=>false, 'msg'=>$validator->errors()], 401);
+                return response()->json(['code'=>false, 'msg'=>$validator->errors()], 200);
             }
         }
 
